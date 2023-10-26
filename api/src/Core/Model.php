@@ -76,7 +76,7 @@ class Model
         return $stmt->fetch();
     }
 
-    protected function update($tableName, $id, $data): bool
+    protected function update($tableName, $data): bool
     {
         $sql = "UPDATE " . $tableName . " SET ";
         $i = 0;
@@ -90,7 +90,6 @@ class Model
         }
         $sql = $sql . " WHERE id = :id";
 
-        $data['id'] = $id;
         $stmt = $this->db->prepare($sql);
         return $stmt->execute($data);
     }

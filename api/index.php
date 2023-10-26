@@ -6,7 +6,7 @@ ini_set("display_errors", 1);
 require __DIR__ . '/vendor/autoload.php';
 
 // Load configuration (e.g., database settings)
-$config = require __DIR__ . '/src/config/database.php';
+$config = require __DIR__ . '/src/config/config.php';
 
 // Get the path from the URL and the request method
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

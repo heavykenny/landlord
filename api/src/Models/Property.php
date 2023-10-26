@@ -16,10 +16,16 @@ class Property extends Model
     public function createProperty($data)
     {
         $criteria = [
-            'title' => $data['title'],
-            'description' => $data['description'],
+            'image_path' => $data['image_path'],
+            'name' => $data['name'],
+            'landlord_id' => $data['landlord_id'],
+            'location' => $data['location'],
             'price' => $data['price'],
-            'location' => $data['location']
+            'address' => $data['address'],
+            'points_of_interest' => $data['points_of_interest'],
+            'description' => $data['description'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude']
         ];
 
         $this->insert($this->propertyTableName, $criteria);
@@ -28,24 +34,58 @@ class Property extends Model
 
     public function getProperties()
     {
-        return $this->selectAll($this->propertyTableName);
+        $sql = "SELECT 
+                        $this->propertyTableName.*,
+                        users.first_name as landlord_first_name,
+                        users.last_name as landlord_last_name,
+                        users.email as landlord_email,
+                        users.phone_number as landlord_phone_number,
+                        users.id as landlord_id,
+                        types.type_name,
+                        property_type.property_type
+
+                FROM $this->propertyTableName JOIN users ON $this->propertyTableName.landlord_id = users.id
+                JOIN types ON $this->propertyTableName.type_id = types.type_id
+                JOIN property_type ON $this->propertyTableName.property_type_id = property_type.id";
+        return $this->query($sql)->fetchAll();
     }
 
     public function getProperty($propertyId)
     {
-        return $this->selectOne($this->propertyTableName, ['id' => $propertyId]);
+        $sql = "SELECT 
+                        $this->propertyTableName.*,
+                        users.first_name as landlord_first_name,
+                        users.last_name as landlord_last_name,
+                        users.email as landlord_email,
+                        users.phone_number as landlord_phone_number,
+                        users.id as landlord_id,
+                        types.type_name,
+                        property_type.property_type
+
+                FROM $this->propertyTableName JOIN users ON $this->propertyTableName.landlord_id = users.id
+                JOIN types ON $this->propertyTableName.type_id = types.type_id
+                JOIN property_type ON $this->propertyTableName.property_type_id = property_type.id
+                WHERE $this->propertyTableName.id = :id";
+        return $this->query($sql, ['id' => $propertyId])->fetch();
     }
 
     public function updateProperty($propertyId, $data)
     {
         $criteria = [
-            'title' => $data['title'],
-            'description' => $data['description'],
+            'id' => $propertyId,
+            'image_path' => $data['image_path'],
+            'name' => $data['name'],
+            'landlord_id' => $data['landlord_id'],
+            'location' => $data['location'],
             'price' => $data['price'],
-            'location' => $data['location']
+            'address' => $data['address'],
+            'points_of_interest' => $data['points_of_interest'],
+            'description' => $data['description'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude']
         ];
 
-        $this->update($this->propertyTableName, $criteria, ['id' => $propertyId]);
+        $this->update($this->propertyTableName, $criteria);
         return $this->db->lastInsertId();
     }
 

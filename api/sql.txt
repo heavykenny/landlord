@@ -1,0 +1,131 @@
+CREATE TABLE `roles` (
+    `role_id` int(11) NOT NULL AUTO_INCREMENT,
+    `role_name` varchar(255) NOT NULL UNIQUE,
+    `description` varchar(255),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`role_id`)
+);
+
+CREATE TABLE `users` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(255) NOT NULL,
+    `last_name` varchar(255) NOT NULL,
+    `email` varchar(255) NOT NULL UNIQUE,
+    `hashed_password` varchar(255) NOT NULL,
+    `phone_number` varchar(255),
+    `address` TEXT,
+    `profile_image_url` TEXT,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `deleted_at` TIMESTAMP NULL,
+    PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE `types` (
+    `type_id` int(11) NOT NULL AUTO_INCREMENT,
+    `type_name` varchar(255) NOT NULL UNIQUE,
+    `description` TEXT,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`type_id`)
+);
+
+CREATE TABLE `property_type` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `property_type` varchar(255) NOT NULL UNIQUE,
+    `description` TEXT,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `properties` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `image_path` TEXT NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `landlord_id` int(11) NOT NULL,
+    `location` varchar(255) NOT NULL,
+    `price` DECIMAL(10, 2) NOT NULL,
+    `type_id` int(11) NOT NULL,
+    `bedrooms` int(11) NOT NULL,
+    `bathrooms` int(11) NOT NULL,
+    `property_type_id` int(11) NOT NULL,
+    `address` TEXT NOT NULL,
+    `points_of_interest` TEXT,
+    `description` TEXT,
+    `latitude` DECIMAL(9, 6),
+    `longitude` DECIMAL(9, 6),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `deleted_at` TIMESTAMP NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`landlord_id`) REFERENCES `users`(`id`),
+    FOREIGN KEY (`type_id`) REFERENCES `types`(`type_id`),
+    FOREIGN KEY (`property_type_id`) REFERENCES `property_type`(`id`)
+);
+
+CREATE TABLE `contact_requests` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `property_id` int(11) NOT NULL,
+    `tenant_id` int(11) NOT NULL,
+    `message` TEXT NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `deleted_at` TIMESTAMP NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`property_id`) REFERENCES `properties`(`id`),
+    FOREIGN KEY (`tenant_id`) REFERENCES `users`(`id`)
+);
+
+CREATE TABLE `user_roles` (
+    `user_id` int(11),
+    `role_id` int(11),
+    PRIMARY KEY (`user_id`, `role_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`role_id`) REFERENCES `roles`(`role_id`) ON DELETE CASCADE
+);
+
+
+INSERT INTO roles (role_name, description) VALUES
+    ('tenant', 'A user looking for a property'),
+    ('landlord', 'A user offering properties for rent'),
+    ('admin', 'Application administrator with special privileges');
+
+INSERT INTO property_type (property_type, description) VALUES
+    ('sale', 'A property for sale'),
+    ('lease', 'A property for lease'),
+    ('rent', 'A property for rent');
+
+INSERT INTO types (type_name, description) VALUES
+    ('apartment', 'A self-contained housing unit that occupies only part of a building'),
+    ('cabin', 'A small shelter or house, made of wood and situated in a wild or remote area'),
+    ('condo', 'A privately owned individual unit in a building of other units'),
+    ('cottage', 'A small simple house, typically one near a lake or beach'),
+    ('flat', 'A set of rooms forming an individual residence, typically on one floor and within a larger building'),
+    ('house', 'A building for human habitation, especially one that is lived in by a family or small group of people'),
+    ('lodge', 'A small house at the gates of a park or in the grounds of a large house, occupied by a gatekeeper, gardener, or other employee'),
+    ('villa', 'A large and luxurious country house in its own grounds');
+
+INSERT INTO `users` (`first_name`, `last_name`, `email`, `hashed_password`, `phone_number`, `address`, `profile_image_url`) VALUES
+('John', 'Doe', 'john.doe@example.com', 'hashedpassword1', '+11234567890', '123 Elm Street, City, Country', 'http://example.com/profile1.jpg'),
+('Jane', 'Smith', 'jane.smith@example.com', 'hashedpassword2', '+12234567890', '456 Oak Street, City, Country', 'http://example.com/profile2.jpg'),
+('Alice', 'Johnson', 'alice.johnson@example.com', 'hashedpassword3','+13234567890', '789 Pine Street, City, Country', 'http://example.com/profile3.jpg'),
+('Bob', 'Williams', 'bob.williams@example.com', 'hashedpassword4', '+14234567890', '101 Maple Street, City, Country', 'http://example.com/profile4.jpg'),
+('Charlie', 'Brown', 'charlie.brown@example.com', 'hashedpassword5', '+15234567890', '202 Birch Street, City, Country', 'http://example.com/profile5.jpg');
+
+
+INSERT INTO properties
+    (image_path, name, landlord_id, location, price, address, points_of_interest, description, latitude, longitude, type_id, bedrooms, bathrooms, property_type_id)
+VALUES
+    ('/path/to/image1.jpg', 'Ocean View Apartment', 1, 'Downtown', 1250.50, '123 Ocean St, Big City', 'Park, Mall', 'Beautiful apartment with a view of the ocean.', 51.5045, -0.0865, 1, 2, 1, 1),
+    ('/path/to/image2.jpg', 'Mountain Cabin', 2, 'Highlands', 850.00, '456 Mountain Rd, Small Town', 'Hiking Trails', 'Cozy cabin with a stunning mountain view.', 51.5194, -0.1270, 2, 1, 1, 2),
+    ('/path/to/image3.jpg', 'City Loft', 3, 'Midtown', 1450.75, '789 Central Blvd, Big City', 'Metro Station, Mall', 'Modern loft in the heart of the city.', 51.5014, -0.1419, 3, 3, 2, 3),
+    ('/path/to/image4.jpg', 'Country Cottage', 4, 'Countryside', 650.25, '1012 Country Ln, Quiet Village', 'Lake, Forest', 'Quiet cottage with scenic views.', 51.5081, -0.0759, 4, 1, 1, 1),
+    ('/path/to/image5.jpg', 'Beach House', 1, 'Seaside', 1850.00, '345 Beach Dr, Sunny Town', 'Beach, Lighthouse', 'House right on the sandy beach.', 51.5079, -0.1283, 5, 4, 3, 2),
+    ('/path/to/image6.jpg', 'Urban Flat', 2, 'Uptown', 950.50, '678 High St, Big City', 'Cafes, Theater', 'Flat with a nice city skyline view.', 51.5033, -0.1195, 6, 2, 1, 3),
+    ('/path/to/image7.jpg', 'Desert Bungalow', 3, 'Desert', 750.00, '910 Sand Dunes Rd, Hot Springs', 'Oasis, Cactus Park', 'Bungalow in a peaceful desert setting.', 51.5073, -0.1657, 7, 1, 1, 1),
+    ('/path/to/image8.jpg', 'Island Villa', 4, 'Island', 2150.75, '234 Island Bay, Tropical Paradise', 'Beach, Coral Reef', 'Villa with a panoramic ocean view.', 51.5138, -0.0984, 8, 5, 4, 2),
+    ('/path/to/image9.jpg', 'Forest Lodge', 1, 'Woods', 800.00, '567 Pine Tree Ln, Forest', 'Waterfall, Camping Ground', 'Lodge surrounded by a dense forest.', 51.5076, -0.0996, 2, 2, 1, 3),
+    ('/path/to/image10.jpg', 'Lakefront Condo', 2, 'Lakeside', 1350.50, '890 Lake View Rd, Clear Water', 'Boating Club, Fish Market', 'Condo with a pristine lake view.', 51.4992, -0.1276, 1, 2, 1, 3);

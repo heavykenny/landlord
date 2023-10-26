@@ -15,12 +15,7 @@ class Landlord extends Model
     public function createLandlord($data)
     {
         $criteria = [
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'salary' => $data['salary'],
-            'location' => $data['location'],
-            'categoryId' => $data['categoryId'],
-            'closingDate' => $data['closingDate'],
+
         ];
 
         $this->insert($this->landlordTableName, $criteria);
@@ -43,7 +38,7 @@ class Landlord extends Model
             'categoryId' => $data['categoryId'],
             'closingDate' => $data['closingDate'],
         ];
-        $this->update($this->landlordTableName, $landlordId, $criteria);
+        $this->update($this->landlordTableName, $criteria);
         return $this->db->lastInsertId();
     }
 

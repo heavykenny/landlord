@@ -22,13 +22,13 @@ class PropertyController extends Controller
 
         if ($response === false) {
             return [
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Something went wrong'
             ];
         }
 
         return [
-            'status' => 'success',
+            'status' => true,
             'message' => 'Properties retrieved successfully',
             'data' => $response
         ];
@@ -40,13 +40,13 @@ class PropertyController extends Controller
 
         if ($response === false) {
             return [
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Something went wrong'
             ];
         }
 
         return [
-            'status' => 'success',
+            'status' => true,
             'message' => 'Property retrieved successfully',
             'data' => $response
         ];
@@ -63,18 +63,17 @@ class PropertyController extends Controller
 
         if ($response === false) {
             return [
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Something went wrong'
             ];
         }
 
         return [
-            'status' => 'success',
+            'status' => true,
             'message' => 'Contact request created successfully',
             'data' => $response
         ];
     }
-
 
     /**
      * @throws Exception
@@ -87,32 +86,14 @@ class PropertyController extends Controller
 
         if ($response === false) {
             return [
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Something went wrong'
             ];
         }
 
         return [
-            'status' => 'success',
+            'status' => true,
             'message' => 'Property created successfully',
-            'data' => $response
-        ];
-    }
-
-    public function readProperty($propertyId): array
-    {
-        $response = $this->propertyModel->readProperty($propertyId);
-
-        if ($response === false) {
-            return [
-                'status' => 'error',
-                'message' => 'Something went wrong'
-            ];
-        }
-
-        return [
-            'status' => 'success',
-            'message' => 'Property retrieved successfully',
             'data' => $response
         ];
     }
@@ -124,7 +105,7 @@ class PropertyController extends Controller
         $response = $this->propertyModel->updateProperty($propertyId, $data);
 
         return [
-            'status' => 'success',
+            'status' => true,
             'message' => 'Property updated successfully',
             'data' => $response
         ];
@@ -135,7 +116,7 @@ class PropertyController extends Controller
         $response = $this->propertyModel->deleteProperty($propertyId);
 
         return [
-            'status' => 'success',
+            'status' => true,
             'message' => 'Property deleted successfully',
             'data' => $response
         ];
