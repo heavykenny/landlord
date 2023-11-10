@@ -39,12 +39,15 @@ class UserController extends Controller
         }
 
         return [
-            'status' => false,
+            'status' => true,
             'message' => 'User retrieved successfully',
             'data' => $response
         ];
     }
 
+    /**
+     * @throws Exception
+     */
     public function updateUser($userId): array
     {
         $data = $this->request;
@@ -57,11 +60,10 @@ class UserController extends Controller
                 'message' => 'Something went wrong'
             ];
         }
-
         return [
             'status' => true,
             'message' => 'User updated successfully',
-            'data' => $response
+            'data' => $this->userModel->getUser($response)
         ];
     }
 
@@ -70,5 +72,22 @@ class UserController extends Controller
         $data = $this->request;
 
         return $this->userModel->loginUser($data);
+    }
+
+    public function deleteUser($userId): array
+    {
+        $response = $this->userModel->deleteUser($userId);
+
+        if ($response === false) {
+            return [
+                'status' => false,
+                'message' => 'Something went wrong'
+            ];
+        }
+        return [
+            'status' => true,
+            'message' => 'User deleted successfully',
+            'data' => $response
+        ];
     }
 }

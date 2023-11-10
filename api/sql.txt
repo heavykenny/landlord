@@ -66,17 +66,16 @@ CREATE TABLE `properties` (
     FOREIGN KEY (`property_type_id`) REFERENCES `property_type`(`id`)
 );
 
-CREATE TABLE `contact_requests` (
+CREATE TABLE `favorites` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `property_id` int(11) NOT NULL,
-    `tenant_id` int(11) NOT NULL,
-    `message` TEXT NOT NULL,
+    `user_id` int(11) NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted_at` TIMESTAMP NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`property_id`) REFERENCES `properties`(`id`),
-    FOREIGN KEY (`tenant_id`) REFERENCES `users`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
 );
 
 CREATE TABLE `user_roles` (
@@ -87,9 +86,25 @@ CREATE TABLE `user_roles` (
     FOREIGN KEY (`role_id`) REFERENCES `roles`(`role_id`) ON DELETE CASCADE
 );
 
+CREATE TABLE inquiries (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `tenant_id` int(11),
+    `landlord_id` int(11),
+    `property_id` int(11),
+    `message` TEXT,
+    `created_by` int(11),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `deleted_at` TIMESTAMP NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`tenant_id`) REFERENCES `users`(`id`),
+    FOREIGN KEY (`landlord_id`) REFERENCES `users`(`id`),
+    FOREIGN KEY (`property_id`) REFERENCES `properties`(`id`),
+    FOREIGN KEY (`created_by`) REFERENCES `users`(`id`)
+);
 
 INSERT INTO roles (role_name, description) VALUES
-    ('tenant', 'A user looking for a property'),
+    ('user', 'A user looking for a property'),
     ('landlord', 'A user offering properties for rent'),
     ('admin', 'Application administrator with special privileges');
 

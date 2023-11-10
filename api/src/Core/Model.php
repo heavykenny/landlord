@@ -4,6 +4,7 @@ namespace App\Core;
 
 use Exception;
 use PDO;
+use PDOStatement;
 
 class Model
 {
@@ -29,24 +30,24 @@ class Model
             return $stmt->execute($data);
 
         } catch (Exception $exception) {
-            throw new Exception("Unable to insert");
+            throw new Exception($exception->getMessage());
         }
     }
 
-    protected function selectAll($tableName)
+    protected function selectAll($tableName): bool|array
     {
         $stmt = $this->db->prepare("SELECT * FROM " . $tableName);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    protected function fetchAll($sql, $params = [])
+    protected function fetchAll($sql, $params = []): bool|array
     {
         $stmt = $this->query($sql, $params);
         return $stmt->fetchAll();
     }
 
-    protected function query($sql, $params = [])
+    protected function query($sql, $params = []): bool|PDOStatement
     {
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
@@ -70,13 +71,7 @@ class Model
         return $stmt->fetch();
     }
 
-    protected function fetch($sql, $params = [])
-    {
-        $stmt = $this->query($sql, $params);
-        return $stmt->fetch();
-    }
-
-    protected function update($tableName, $data): bool
+    protected function update($tableName, $data, $params): bool
     {
         $sql = "UPDATE " . $tableName . " SET ";
         $i = 0;
@@ -90,15 +85,41 @@ class Model
         }
         $sql = $sql . " WHERE id = :id";
 
+        $data['id'] = $params['id'];
         $stmt = $this->db->prepare($sql);
         return $stmt->execute($data);
     }
 
-    protected function delete($tableName, $id): bool
+    protected function delete($tableName, $params): bool
     {
-        $stmt = $this->db->prepare("DELETE FROM " . $tableName . " WHERE id = :id");
+        $sql = "DELETE FROM " . $tableName . " WHERE ";
+        $i = 0;
+        foreach ($params as $key => $value) {
+            if ($i === 0) {
+                $sql = $sql . $key . " =:" . $key;
+            } else {
+                $sql = $sql . " AND " . $key . " =:" . $key;
+            }
+            $i++;
+        }
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute($params);
+    }
+
+
+    protected function softDelete($tableName, $id): bool
+    {
+        $stmt = $this->db->prepare("UPDATE " . $tableName . " SET deleted_at = NOW() WHERE id = :id");
         $stmt->bindValue(":id", $id);
         return $stmt->execute();
+    }
+
+    protected function fetchOne(string $sql, array $array)
+    {
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute($array);
+        return $stmt->fetch();
     }
 
 }

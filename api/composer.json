@@ -3,7 +3,7 @@
   "description": "A description of your project",
   "type": "project",
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": "^8.0",
     "monolog/monolog": "^2.0",
     "guzzlehttp/guzzle": "^7.0",
     "ext-json": "*",

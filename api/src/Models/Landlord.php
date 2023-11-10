@@ -27,7 +27,7 @@ class Landlord extends Model
         return $this->selectOne($this->landlordTableName, $condition);
     }
 
-    public function updateLandlord($landlordId, $data)
+    public function updateLandlord($landlordId, $data): bool|string
     {
         $criteria = [
             'id' => $landlordId,
@@ -38,17 +38,17 @@ class Landlord extends Model
             'categoryId' => $data['categoryId'],
             'closingDate' => $data['closingDate'],
         ];
-        $this->update($this->landlordTableName, $criteria);
+        $this->update($this->landlordTableName, $criteria, ['id' => $landlordId]);
         return $this->db->lastInsertId();
     }
 
-    public function deleteLandlord($landlordId)
+    public function deleteLandlord($landlordId): bool|string
     {
-        $this->delete($this->landlordTableName, ['id' => $landlordId]);
+        $this->softDelete($this->landlordTableName, ['id' => $landlordId]);
         return $this->db->lastInsertId();
     }
 
-    public function viewLandlords()
+    public function viewLandlords(): bool|array
     {
         return $this->selectAll($this->landlordTableName);
     }
