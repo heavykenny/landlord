@@ -71,6 +71,7 @@
 
 <script>
     getLandlords();
+
     function getLandlords() {
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "http://localhost/landlord/api/admin/getLandlords", true);

@@ -100,7 +100,6 @@ class InquiriesController extends Controller
         ];
     }
 
-
     public function getTenantInquiries(): array
     {
         $validation = $this->validateRequestToken();
@@ -168,7 +167,6 @@ class InquiriesController extends Controller
             'data' => $response
         ];
     }
-
 
     public function getMessages($propertyId): array
     {

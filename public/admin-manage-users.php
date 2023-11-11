@@ -65,6 +65,7 @@
 
 <script>
     getUsers();
+
     function getUsers() {
         let ajax = new XMLHttpRequest();
         ajax.open("GET", "http://localhost/landlord/api/admin/getUsers", true);

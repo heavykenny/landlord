@@ -31,68 +31,90 @@
                     <div class="card my-5">
                         <div class="card-body">
                             <h3 class="card-title text-center">Property Listing</h3>
-                            <form action="http://localhost/landlord/api/property/createProperty" method="post" role="form" class="php-email-form">
+                            <form action="http://localhost/landlord/api/property/createProperty" method="post"
+                                  role="form" class="php-email-form">
                                 <div class="row">
 
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control form-control-lg form-control-a" placeholder="Property Name" required>
+                                            <input type="text" name="name"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Property Name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="location" class="form-control form-control-lg form-control-a" placeholder="Location" required>
+                                            <input type="text" name="location"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Location" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="price" class="form-control form-control-lg form-control-a" placeholder="Price" required>
+                                            <input type="text" name="price"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Price" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="address" class="form-control form-control-lg form-control-a" placeholder="Address" required>
+                                            <input type="text" name="address"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Address" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="file" name="image_path" class="form-control form-control-lg form-control-a" id="imageUpload" required>
+                                            <input type="file" name="image_path"
+                                                   class="form-control form-control-lg form-control-a" id="imageUpload"
+                                                   required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <textarea name="points_of_interest" class="form-control" rows="5" placeholder="Points of Interest" required></textarea>
+                                            <textarea name="points_of_interest" class="form-control" rows="5"
+                                                      placeholder="Points of Interest" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <textarea name="description" class="form-control" rows="5" placeholder="Description" required></textarea>
+                                            <textarea name="description" class="form-control" rows="5"
+                                                      placeholder="Description" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="latitude" class="form-control form-control-lg form-control-a" placeholder="Latitude" required>
+                                            <input type="text" name="latitude"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Latitude" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="longitude" class="form-control form-control-lg form-control-a" placeholder="Longitude" required>
+                                            <input type="text" name="longitude"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Longitude" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="bedrooms" class="form-control form-control-lg form-control-a" placeholder="Bedrooms" required>
+                                            <input type="text" name="bedrooms"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Bedrooms" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="bathrooms" class="form-control form-control-lg form-control-a" placeholder="Bathrooms" required>
+                                            <input type="text" name="bathrooms"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Bathrooms" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <select name="type_id" class="form-control form-control-lg form-control-a form-select">
+                                            <select name="type_id"
+                                                    class="form-control form-control-lg form-control-a form-select">
                                                 <option value="">Type (Optional)</option>
                                                 <option value="1">Type 1</option>
                                                 <option value="2">Type 2</option>
@@ -102,7 +124,8 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <select name="property_type_id" class="form-control form-control-lg form-control-a form-select">
+                                            <select name="property_type_id"
+                                                    class="form-control form-control-lg form-control-a form-select">
                                                 <option value="">Property Type (Optional)</option>
                                                 <option value="1">Apartment</option>
                                                 <option value="2">House</option>

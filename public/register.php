@@ -35,29 +35,39 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="first_name" class="form-control form-control-lg form-control-a" placeholder="First Name" required>
+                                            <input type="text" name="first_name"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="First Name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="last_name" class="form-control form-control-lg form-control-a" placeholder="Last Name" required>
+                                            <input type="text" name="last_name"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Last Name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-lg form-control-a" placeholder="Email" required>
+                                            <input type="email" name="email"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-lg form-control-a" placeholder="Password" required>
+                                            <input type="password" name="password"
+                                                   class="form-control form-control-lg form-control-a"
+                                                   placeholder="Password" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 my-3">
                                         <div class="mb-3">
                                             <div class="loading">Loading...</div>
                                             <div class="error-message"></div>
-                                            <div class="sent-message">Your registration has been successful. Thank you!</div>
+                                            <div class="sent-message">Your registration has been successful. Thank
+                                                you!
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-center">

@@ -9,19 +9,6 @@ class Landlord extends Model
 {
     private string $landlordTableName = 'landlords';
 
-    /**
-     * @throws Exception
-     */
-    public function createLandlord($data)
-    {
-        $criteria = [
-
-        ];
-
-        $this->insert($this->landlordTableName, $criteria);
-        return $this->db->lastInsertId();
-    }
-
     public function readLandlord($condition)
     {
         return $this->selectOne($this->landlordTableName, $condition);

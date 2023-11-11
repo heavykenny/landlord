@@ -136,24 +136,24 @@ class Inquiries extends Model
     public function getMessages2($property, $user_id): bool|array
     {
         $sql = "SELECT 
-    inquiries.id AS inquiry_id,
-    properties.id AS property_id,
-    properties.name AS property_name,
-    landlord.id AS landlord_id,
-    landlord.first_name AS landlord_first_name,
-    landlord.last_name AS landlord_last_name,
-    landlord.email AS landlord_email,
-    landlord.phone_number AS landlord_phone_number,
-    inquiries.message,
-    inquiries.created_at,
-    tenant.id AS tenant_id,
-    tenant.first_name AS tenant_first_name,
-    tenant.last_name AS tenant_last_name
-FROM inquiries
-JOIN properties ON inquiries.property_id = properties.id
-JOIN users AS landlord ON properties.landlord_id = landlord.id
-JOIN users AS tenant ON inquiries.tenant_id = tenant.id
-WHERE inquiries.tenant_id = $user_id AND properties.id = $property";
+                    inquiries.id AS inquiry_id,
+                    properties.id AS property_id,
+                    properties.name AS property_name,
+                    landlord.id AS landlord_id,
+                    landlord.first_name AS landlord_first_name,
+                    landlord.last_name AS landlord_last_name,
+                    landlord.email AS landlord_email,
+                    landlord.phone_number AS landlord_phone_number,
+                    inquiries.message,
+                    inquiries.created_at,
+                    tenant.id AS tenant_id,
+                    tenant.first_name AS tenant_first_name,
+                    tenant.last_name AS tenant_last_name
+                FROM inquiries
+                JOIN properties ON inquiries.property_id = properties.id
+                JOIN users AS landlord ON properties.landlord_id = landlord.id
+                JOIN users AS tenant ON inquiries.tenant_id = tenant.id
+                WHERE inquiries.tenant_id = $user_id AND properties.id = $property";
 
         return $this->query($sql)->fetchAll();
     }

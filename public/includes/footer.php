@@ -9,7 +9,8 @@
                     </div>
                     <div class="w-body-a">
                         <p class="w-text-a color-text-a">
-                            Leading the way in real estate market trends and technologies, Estate Elite offers premium property listings and insights for buyers, sellers, and investors.
+                            Leading the way in real estate market trends and technologies, Estate Elite offers premium
+                            property listings and insights for buyers, sellers, and investors.
                         </p>
                     </div>
                     <div class="w-footer-a">
@@ -144,11 +145,6 @@
         </div>
     </div>
 </footer>
-
-
-
-
-
 
 
 <div id="preloader"></div>

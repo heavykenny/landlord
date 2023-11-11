@@ -22,10 +22,7 @@
     <link href="library/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="library/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
-
-
 </head>
 
 <body>

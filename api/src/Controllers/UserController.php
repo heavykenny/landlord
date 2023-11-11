@@ -27,24 +27,6 @@ class UserController extends Controller
         return $this->userModel->createUser($data);
     }
 
-    public function getUser($userId): array
-    {
-        $response = $this->userModel->getUser($userId);
-
-        if ($response === false) {
-            return [
-                'status' => false,
-                'message' => 'Something went wrong'
-            ];
-        }
-
-        return [
-            'status' => true,
-            'message' => 'User retrieved successfully',
-            'data' => $response
-        ];
-    }
-
     /**
      * @throws Exception
      */
@@ -64,6 +46,24 @@ class UserController extends Controller
             'status' => true,
             'message' => 'User updated successfully',
             'data' => $this->userModel->getUser($response)
+        ];
+    }
+
+    public function getUser($userId): array
+    {
+        $response = $this->userModel->getUser($userId);
+
+        if ($response === false) {
+            return [
+                'status' => false,
+                'message' => 'Something went wrong'
+            ];
+        }
+
+        return [
+            'status' => true,
+            'message' => 'User retrieved successfully',
+            'data' => $response
         ];
     }
 

@@ -18,7 +18,7 @@ class Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (count($_POST) > 0) {
                 $this->request = $_POST;
-            }else{
+            } else {
                 $this->request = json_decode(file_get_contents("php://input"), true);
             }
         }

@@ -55,6 +55,9 @@ class AdminController extends Controller
         ];
     }
 
+    /**
+     * @throws Exception
+     */
     public function updateUser($userId): array
     {
         $data = $this->request;

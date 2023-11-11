@@ -32,7 +32,8 @@
                     <div class="card my-5">
                         <div class="card-body">
                             <h3 class="card-title text-center">Login</h3>
-                            <form action="http://localhost/landlord/api/user/loginUser" method="post" role="form" class="php-email-form">
+                            <form action="http://localhost/landlord/api/user/loginUser" method="post" role="form"
+                                  class="php-email-form">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">

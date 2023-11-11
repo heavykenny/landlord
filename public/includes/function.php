@@ -1,6 +1,5 @@
 <?php
 
-
 function isLogin(): bool
 {
     return isset($_COOKIE['token']);
@@ -26,7 +25,8 @@ function isLandlord(): bool
     return $payload->data->role_id === 2;
 }
 
-function decodeJWT() {
+function decodeJWT()
+{
     $jwt = $_COOKIE['token'] ?? '';
     $config = require __DIR__ . '/../../api/src/config/config.php';
     $secretKey = $config['secretKey'];

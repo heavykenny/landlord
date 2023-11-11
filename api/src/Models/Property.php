@@ -103,7 +103,6 @@ class Property extends Model
     /**
      * @throws Exception
      */
-
     public function readProperty($propertyId)
     {
         return $this->selectOne($this->propertyTableName, ['id' => $propertyId]);
@@ -134,15 +133,14 @@ class Property extends Model
     public function getFavorites($id): bool|array
     {
         $sql = "SELECT 
-                        $this->propertyTableName.*,
-                        users.first_name as landlord_first_name,
-                        users.last_name as landlord_last_name,
-                        users.email as landlord_email,
-                        users.phone_number as landlord_phone_number,
-                        users.id as landlord_id,
-                        types.type_name,
-                        property_type.property_type
-
+                    $this->propertyTableName.*,
+                    users.first_name as landlord_first_name,
+                    users.last_name as landlord_last_name,
+                    users.email as landlord_email,
+                    users.phone_number as landlord_phone_number,
+                    users.id as landlord_id,
+                    types.type_name,
+                    property_type.property_type
                 FROM $this->propertyTableName JOIN users ON $this->propertyTableName.landlord_id = users.id
                 JOIN types ON $this->propertyTableName.type_id = types.type_id
                 JOIN property_type ON $this->propertyTableName.property_type_id = property_type.id
@@ -154,19 +152,18 @@ class Property extends Model
     public function getPropertiesByLandlord($id): bool|array
     {
         $sql = "SELECT 
-                        $this->propertyTableName.*,
-                        users.first_name as landlord_first_name,
-                        users.last_name as landlord_last_name,
-                        users.email as landlord_email,
-                        users.phone_number as landlord_phone_number,
-                        users.id as landlord_id,
-                        types.type_name,
-                        property_type.property_type
-
+                    $this->propertyTableName.*,
+                    users.first_name as landlord_first_name,
+                    users.last_name as landlord_last_name,
+                    users.email as landlord_email,
+                    users.phone_number as landlord_phone_number,
+                    users.id as landlord_id,
+                    types.type_name,
+                    property_type.property_type
                 FROM $this->propertyTableName JOIN users ON $this->propertyTableName.landlord_id = users.id
                 JOIN types ON $this->propertyTableName.type_id = types.type_id
                 JOIN property_type ON $this->propertyTableName.property_type_id = property_type.id
-                WHERE users.id = :id";
+                WHERE $this->propertyTableName.deleted_at IS NULL AND users.id = :id";
         return $this->query($sql, ['id' => $id])->fetchAll();
     }
 }

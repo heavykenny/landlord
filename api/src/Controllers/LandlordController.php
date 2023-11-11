@@ -16,30 +16,6 @@ class LandlordController extends Controller
         $this->landlordModel = new Landlord($this->db);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function createLandlord(): array
-    {
-        $data = $_POST;
-
-        $response = $this->landlordModel->createLandlord($data);
-
-        if ($response === false) {
-            return [
-                'status' => 'error',
-                'message' => 'Something went wrong'
-            ];
-        }
-
-        return [
-            'status' => 'success',
-            'message' => 'Landlord created successfully',
-            'data' => $response
-        ];
-    }
-
-
     public function viewLandlords(): array
     {
         $response = $this->landlordModel->viewLandlords();

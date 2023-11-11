@@ -106,7 +106,6 @@ class Model
         return $stmt->execute($params);
     }
 
-
     protected function softDelete($tableName, $id): bool
     {
         $stmt = $this->db->prepare("UPDATE " . $tableName . " SET deleted_at = NOW() WHERE id = :id");
@@ -121,5 +120,4 @@ class Model
         $stmt->execute($array);
         return $stmt->fetch();
     }
-
 }

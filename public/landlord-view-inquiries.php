@@ -57,7 +57,7 @@
 
     function fetchInquiries() {
         let ajax = new XMLHttpRequest();
-        ajax.open("GET", "http://localhost/landlord/api/inquiries/getMessages2/<?=$_GET["propertyId"] ."?tenantId=". $_GET["tenantId"]?>", true);
+        ajax.open("GET", "http://localhost/landlord/api/inquiries/getMessages2/<?=$_GET["propertyId"] . "?tenantId=" . $_GET["tenantId"]?>", true);
         ajax.setRequestHeader("Bearer", "<?=getToken() ?>");
         ajax.send();
         ajax.onreadystatechange = function () {
