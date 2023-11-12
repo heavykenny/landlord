@@ -119,7 +119,6 @@ class Property extends Model
         ];
 
         // fetch the favorite before inserting
-
         $favorite = $this->selectOne('favorites', $criteria);
 
         if ($favorite) {

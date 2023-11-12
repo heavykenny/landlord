@@ -24,6 +24,12 @@ class UserController extends Controller
     {
         $data = $this->request;
 
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            return [
+                'status' => false,
+                'message' => 'The email address is not valid.'
+            ];
+        }
         return $this->userModel->createUser($data);
     }
 
