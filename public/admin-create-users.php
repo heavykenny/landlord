@@ -30,7 +30,7 @@
                 <div class="col-lg-8">
                     <div class="card my-5">
                         <div class="card-body">
-                            <h3 class="card-title text-center">User Registration</h3>
+                            <h3 class="card-title text-center">Create User </h3>
                             <form action="http://localhost/landlord/api/user/createUser" method="post" role="form"
                                   class="php-email-form">
                                 <div class="row">

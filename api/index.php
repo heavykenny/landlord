@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 // Require the Composer autoloader - ensure composer dependencies are installed
 require __DIR__ . '/vendor/autoload.php';
 

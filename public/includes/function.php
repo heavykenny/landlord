@@ -1,5 +1,9 @@
 <?php
 
+CONST ADMIN = 3;
+CONST LANDLORD = 2;
+CONST USER = 1;
+
 function isLogin(): bool
 {
     return isset($_COOKIE['token']);
@@ -12,7 +16,7 @@ function isAdmin(): bool
     }
 
     $payload = decodeJWT();
-    return $payload->data->role_id === 3;
+    return $payload->data->role_id === ADMIN;
 }
 
 function isLandlord(): bool
@@ -22,7 +26,7 @@ function isLandlord(): bool
     }
 
     $payload = decodeJWT();
-    return $payload->data->role_id === 2;
+    return $payload->data->role_id === LANDLORD;
 }
 
 function decodeJWT()
@@ -53,5 +57,3 @@ function getToken(): string
 {
     return $_COOKIE['token'] ?? '';
 }
-
-

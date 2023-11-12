@@ -1,6 +1,6 @@
 {
-  "name": "your-vendor/your-project",
-  "description": "A description of your project",
+  "name": "estate-elite/landlord",
+  "description": "A simple API for a landlord to manage their properties and tenants",
   "type": "project",
   "require": {
     "php": "^8.0",

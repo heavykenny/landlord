@@ -23,7 +23,8 @@ class Controller
             }
         }
         // log to file
-        $log = date("Y-m-d H:i:s") . " " . $_SERVER['REQUEST_METHOD'] . " " . $_SERVER['REQUEST_URI'] . " " . json_encode($this->request) . "\n";
+        $log = date("Y-m-d H:i:s") . " " . $_SERVER['REQUEST_METHOD'] . " "
+            . $_SERVER['REQUEST_URI'] . " " . json_encode($this->request) . "\n";
         file_put_contents(__DIR__ . "/api.log", $log, FILE_APPEND);
     }
 

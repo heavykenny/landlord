@@ -38,7 +38,7 @@ class Authentication
         try {
             JWT::decode($token, new Key($this->secretKey, 'HS256'));
             return true;
-        } catch (Exception $exception) {
+        } catch (Exception) {
             return false;
         }
     }
